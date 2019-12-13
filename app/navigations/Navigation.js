@@ -15,7 +15,7 @@ const NavigationStacks = createBottomTabNavigator(
 			navigationOptions: () => ({
 				tabBarLabel: 'Restaurantes',
 				tabBarIcon: ({ tintColor }) => (
-					<Icon type="material-community" name="compass-outline" size={22} color={tintColor} />
+					<Icon type="material-community" name="auto-awesome" size={22} color={tintColor} />
 				)
 			})
 		},
@@ -48,7 +48,7 @@ const NavigationStacks = createBottomTabNavigator(
 		}
 	},
 	{
-		initialRouteName: 'Restaurants',
+		initialRouteName: 'Account',
 		order: [ 'Account', 'Restaurants', 'TopLists', 'Search' ],
 		tabBarOptions: {
 			inactiveTintColor: '#646464',
