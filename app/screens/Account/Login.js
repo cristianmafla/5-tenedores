@@ -3,7 +3,8 @@ import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 
-const Login = (params) => {
+const Login = (props) => {
+	const { navigation } = props;
 	return (
 		<ScrollView>
 			<Image
@@ -13,13 +14,26 @@ const Login = (params) => {
 			/>
 			<View style={styles.viewContainer}>
 				<Text>Form Login ...</Text>
-				<Text>Create Account</Text>
+				<CreateAccount navigation={navigation} />
 			</View>
 			<Divider style={styles.divider} />
-      <View style={styles.viewContainer}>
-        <Text>Login Facebook...</Text>
-      </View>
+			<View style={styles.viewContainer}>
+				<Text>Login Facebook...</Text>
+			</View>
 		</ScrollView>
+	);
+};
+
+const CreateAccount = (props) => {
+	console.log(':::', props);
+	const { navigation } = props;
+	return (
+		<Text style={styles.textRegister}>
+			¿Aún no tienes una cuenta?{' '}
+			<Text style={styles.btnRegister} onPress={() => navigation.navigate('Register')}>
+				Registrate
+			</Text>
+		</Text>
 	);
 };
 
@@ -36,6 +50,15 @@ const styles = StyleSheet.create({
 	divider: {
 		backgroundColor: '#00a680',
 		margin: 40
+	},
+	textRegister: {
+		marginTop: 15,
+		marginLeft: 10,
+		marginRight: 10
+	},
+	btnRegister: {
+		color: '#00a608',
+		fontWeight: 'bold'
 	}
 });
 

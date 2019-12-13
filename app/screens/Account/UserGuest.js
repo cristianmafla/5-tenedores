@@ -25,7 +25,6 @@ const UserGuest = props => {
 	);
 };
 
-export default withNavigation(UserGuest);
 
 const styles = StyleSheet.create({
 	viewBody: {
@@ -58,3 +57,5 @@ const styles = StyleSheet.create({
 		width: '70%'
 	}
 });
+
+export default withNavigation(UserGuest);
