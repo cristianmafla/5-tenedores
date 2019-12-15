@@ -25,7 +25,6 @@ const Login = (props) => {
 };
 
 const CreateAccount = (props) => {
-	console.log(':::', props);
 	const { navigation } = props;
 	return (
 		<Text style={styles.textRegister}>

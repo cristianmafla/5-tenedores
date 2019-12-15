@@ -15,7 +15,7 @@ const NavigationStacks = createBottomTabNavigator(
 			navigationOptions: () => ({
 				tabBarLabel: 'Restaurantes',
 				tabBarIcon: ({ tintColor }) => (
-					<Icon type="material-community" name="auto-awesome" size={22} color={tintColor} />
+					<Icon type="material-community" name="silverware-fork-knife" size={22} color={tintColor} />
 				)
 			})
 		},
