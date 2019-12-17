@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "5-tenedores",
-    "slug": "5-tenedores",
+    "name": "restaurantes",
+    "slug": "restaurantes",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -26,6 +26,6 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": ""
+    "description": "react native proyect"
   }
 }

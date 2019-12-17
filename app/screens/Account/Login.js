@@ -1,9 +1,10 @@
-import React,{useRef} from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet, View, ScrollView, Text, Image } from 'react-native';
 import { Divider } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import LoginForm from '../../components/Account/LoginForm';
-import Toast from 'react-native-easy-toast'
+import Toast from 'react-native-easy-toast';
+import LoginFacebook from '../../components/Account/LoginFacebook';
 
 const Login = (props) => {
 	const { navigation } = props;
@@ -16,14 +17,14 @@ const Login = (props) => {
 				resizeMode="contain"
 			/>
 			<View style={styles.viewContainer}>
-				<LoginForm toastRef={toastRef}/>
+				<LoginForm toastRef={toastRef} />
 				<CreateAccount navigation={navigation} />
 			</View>
 			<Divider style={styles.divider} />
 			<View style={styles.viewContainer}>
-				<Text>Login Facebook...</Text>
+				<LoginFacebook />
 			</View>
-			<Toast ref={toastRef} position="center" opacity={0.9} ></Toast>
+			<Toast ref={toastRef} position="center" opacity={0.9} />
 		</ScrollView>
 	);
 };
@@ -63,8 +64,8 @@ const styles = StyleSheet.create({
 		color: '#00a680',
 		fontWeight: 'bold'
 	},
-	toast:{
-		marginTop:50
+	toast: {
+		marginTop: 50
 	}
 });
 
