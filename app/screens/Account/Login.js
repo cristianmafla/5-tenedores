@@ -22,7 +22,7 @@ const Login = (props) => {
 			</View>
 			<Divider style={styles.divider} />
 			<View style={styles.viewContainer}>
-				<LoginFacebook />
+				<LoginFacebook toastRef={toastRef} navigation={navigation}/>
 			</View>
 			<Toast ref={toastRef} position="center" opacity={0.9} />
 		</ScrollView>
