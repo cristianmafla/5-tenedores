@@ -6,14 +6,21 @@ import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function InfoUser(props) {
-  YellowBox.ignoreWarnings(['Setting a timer']);
-	const { userInfo, userInfo: { uid, displayName, email, photoURL } } = props;
+	YellowBox.ignoreWarnings([ 'Setting a timer' ]);
+	const { 
+		userInfo,
+		userInfo: { uid, displayName, email, photoURL },
+		setReloadData,
+		toastRef,
+		setIsLoading,
+		setTextLoading
+	} = props;
 
 	const changeAvatar = async () => {
 		const resultPermissions = await Permissions.askAsync(Permissions.CAMERA_ROLL);
 		const resultPermissionsCamera = resultPermissions.permissions.cameraRoll.status;
 		if (resultPermissions === 'denied') {
-			console.log('=======sds=====>', 'es necessario aceptar los permisos');
+			toastRef.current.show('es necessario aceptar los permisos.');
 		} else {
 			const result = await ImagePicker.launchImageLibraryAsync({
 				allowsEditing: true,
@@ -21,18 +28,39 @@ export default function InfoUser(props) {
 			});
 
 			if (result.cancelled) {
-				console.log('has cerrado la galeria de imagenes');
+				toastRef.current.show('has cerrado la galeria de imagenes, sin seleccinar ninguna.');
 			} else {
-				uploadImage(result.uri, uid).then((data) => console.log('imagen subida correctamente'));
+				uploadImage(result.uri, uid).then((data) => {
+					updatePhotoUrl(uid);
+				});
 			}
 		}
 	};
 
 	const uploadImage = async (uri, nameImage) => {
+		setTextLoading('Actualizando Avatar');
+		setIsLoading(true);
 		const response = await fetch(uri);
 		const blob = await response.blob();
-		const ref = firebase.storage().ref().child(`avatar/nameImage`);
+		const ref = firebase.storage().ref().child(`avatar/${nameImage}`);
 		return ref.put(blob);
+	};
+
+	const updatePhotoUrl = (uid) => {
+
+		firebase
+			.storage()
+			.ref(`avatar/${uid}`)
+			.getDownloadURL()
+			.then(async (result) => {
+				const update = {
+					photoURL: result
+				};
+				await firebase.auth().currentUser.updateProfile(update);
+				setReloadData(true);
+				setIsLoading(false);
+			})
+			.catch((error) =>	toastRef.current.show('error al recuperar el avatar del servidor'));
 	};
 
 	return (
